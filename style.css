@@ -16,8 +16,8 @@ div {
   background: radial-gradient(
     circle at 30% 30%,
     #ffffff 20%,
-    #87cefa 70%,
-    #4fc3f7 100%
+    #049fff 70%,
+    #0058ab 100%
   );
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -46,8 +46,8 @@ div {
   background: radial-gradient(
     ellipse at 30% 70%,
     #ffffff 20%,
-    #87cefa 70%,
-    #4fc3f7 100%
+    #049fff 70%,
+    #0058ab 100%
   );
   clip-path: polygon(50% 0%, 0% 90%, 100% 80%);
 }
