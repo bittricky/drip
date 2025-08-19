@@ -1,5 +1,5 @@
 body {
-  background-color: #0058ab;
+  background-color: #ffffff;
   overflow: hidden;
 }
 
@@ -16,8 +16,8 @@ div {
   background: radial-gradient(
     circle at 30% 30%,
     #ffffff 20%,
-    #049fff 70%,
-    #0058ab 100%
+    #6b6b6b 70%,
+    #2c2c2c 100%
   );
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -46,8 +46,8 @@ div {
   background: radial-gradient(
     ellipse at 30% 70%,
     #ffffff 20%,
-    #049fff 70%,
-    #0058ab 100%
+    #6b6b6b 70%,
+    #2c2c2c 100%
   );
   clip-path: polygon(50% 0%, 0% 90%, 100% 80%);
 }
@@ -58,7 +58,7 @@ div {
   top: 0;
   width: 2px;
   height: 1px;
-  border: #fff 7px solid;
+  border: #2c2c2c 7px solid;
   -moz-border-radius: 300px / 150px;
   -webkit-border-radius: 300px / 150px;
   border-radius: 300px / 150px;
@@ -84,7 +84,7 @@ div {
   left: -5px;
   width: 2px;
   height: 1px;
-  border: #4fc3f7 5px solid;
+  border: #2c2c2c 5px solid;
   -moz-border-radius: 300px / 150px;
   -webkit-border-radius: 300px / 150px;
   border-radius: 300px / 150px;
