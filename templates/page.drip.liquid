@@ -1,0 +1,18 @@
+{% comment %}
+Page template that renders the Drip section.
+For local builds, this file is rendered into a complete HTML document.
+{% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drip</title>
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body class="template-page-drip">
+    {% section 'drip' %}
+  </body>
+</html>

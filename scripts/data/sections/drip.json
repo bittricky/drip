@@ -1,0 +1,10 @@
+{
+  "bg_color": "#ffffff",
+  "droplet_light": "#ffffff",
+  "droplet_mid": "#6b6b6b",
+  "droplet_dark": "#2c2c2c",
+  "ocean_color": "#2c2c2c",
+  "anim_duration": 2,
+  "show_droplet": true,
+  "show_ripple": true
+}

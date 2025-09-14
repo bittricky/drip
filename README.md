@@ -107,3 +107,89 @@ The water droplet effect combines all these techniques:
 - **Clip path** shapes the teardrop tail
 
 Each technique serves a specific purpose in creating the illusion and creating the ripple effect of water.
+
+## Shopify Liquid Integration
+
+This demo has been updated to support Shopify Liquid so that colors and animation duration can be customized via theme settings.
+
+### What changed
+
+- `index.html` now includes Liquid:
+  - Dynamic page title: `{{ page_title | default: shop.name | escape }}`
+  - Stylesheet loaded via assets: `{{ 'style.css' | asset_url | stylesheet_tag }}`
+  - Theme head content: `{{ content_for_header }}`
+  - CSS variables sourced from theme settings in a `<style>` `:root` block
+  - Conditional rendering of elements via `settings.show_droplet` and `settings.show_ripple`
+- `style.css` now uses CSS variables so it works both on the web and in Shopify when variables are provided by Liquid.
+- `config/settings_schema.json` defines theme settings for colors and animation duration.
+
+### Available settings (configurable in Theme Editor)
+
+- `bg_color` — Background color
+- `droplet_light` — Droplet highlight (light)
+- `droplet_mid` — Droplet mid tone
+- `droplet_dark` — Droplet shadow (dark)
+- `ocean_color` — Ripple (ocean) color
+- `anim_duration` — Animation duration in seconds
+- `show_droplet` — Toggle droplet visibility
+- `show_ripple` — Toggle ripple visibility
+
+### Using inside a Shopify theme
+
+1. Create folders in your theme if they don't exist and copy files:
+   - Copy `index.html` into `templates/` or `sections/` and rename to match Shopify conventions, for example:
+     - As a template: `templates/page.drip.json` (JSON) paired with a section, or `templates/page.drip.liquid`
+     - As a section: `sections/drip.liquid`
+   - Copy `style.css` into `assets/style.css`
+   - Copy `config/settings_schema.json` into your theme's `config/` directory (merge with existing if needed).
+
+2. If you use a section (`sections/drip.liquid`), wrap the markup from `index.html` in that section file. Ensure the stylesheet line remains `{{ 'style.css' | asset_url | stylesheet_tag }}`.
+
+3. Open the Theme Editor and adjust the colors and animation duration in the "Drip Animation Settings" group.
+
+### Notes
+
+- When viewing this locally as a plain HTML file, the Liquid won’t render, but default CSS variable values are provided via Liquid fallbacks in `index.html`.
+- In a Shopify theme, Liquid will populate the CSS variables in the `:root` block, and `style.css` will pick them up.
+
+## Local Usage (no Shopify)
+
+Build and serve the Liquid templates locally using the provided Node pipeline:
+
+1. Install dependencies:
+   - `npm install`
+2. Build once:
+   - `npm run build` (outputs `dist/index.html`)
+3. Dev server (auto rebuild + serve):
+   - `npm run dev` and open http://localhost:3000
+
+### Customize appearance
+
+Edit the local section settings file at `scripts/data/sections/drip.json`:
+
+```json
+{
+  "bg_color": "#ffffff",
+  "droplet_light": "#ffffff",
+  "droplet_mid": "#6b6b6b",
+  "droplet_dark": "#2c2c2c",
+  "ocean_color": "#2c2c2c",
+  "anim_duration": 2,
+  "show_droplet": true,
+  "show_ripple": true
+}
+```
+
+These map to CSS variables in the rendered HTML and are consumed by `style.css`.
+
+Note: A previous standalone `index.html` file is no longer necessary with this build setup and may be removed during cleanup.
+
+### Optional Shopify Files
+
+This repo also includes optional Shopify files for convenience if you decide to integrate later:
+
+- `sections/drip.liquid` — a section version of the animation with configurable settings
+- `templates/page.drip.liquid` — a page template that renders the section
+- `config/settings_schema.json` — global theme settings (not needed for local use)
+
+You can ignore these files when running locally.

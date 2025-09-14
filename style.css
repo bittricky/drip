@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: var(--bg);
   overflow: hidden;
 }
 
@@ -15,9 +15,9 @@ div {
   margin: 0 auto;
   background: radial-gradient(
     circle at 30% 30%,
-    #ffffff 20%,
-    #6b6b6b 70%,
-    #2c2c2c 100%
+    var(--droplet-light) 20%,
+    var(--droplet-mid) 70%,
+    var(--droplet-dark) 100%
   );
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -28,9 +28,9 @@ div {
   -moz-animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
   -webkit-animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
   animation-timing-function: cubic-bezier(1, 0, 0.91, 0.19);
-  -moz-animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -moz-animation-duration: var(--anim-duration);
+  -webkit-animation-duration: var(--anim-duration);
+  animation-duration: var(--anim-duration);
   -moz-animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
@@ -45,9 +45,9 @@ div {
   left: 0;
   background: radial-gradient(
     ellipse at 30% 70%,
-    #ffffff 20%,
-    #6b6b6b 70%,
-    #2c2c2c 100%
+    var(--droplet-light) 20%,
+    var(--droplet-mid) 70%,
+    var(--droplet-dark) 100%
   );
   clip-path: polygon(50% 0%, 0% 90%, 100% 80%);
 }
@@ -58,19 +58,19 @@ div {
   top: 0;
   width: 2px;
   height: 1px;
-  border: #2c2c2c 7px solid;
+  border: var(--ocean-color) 7px solid;
   -moz-border-radius: 300px / 150px;
   -webkit-border-radius: 300px / 150px;
   border-radius: 300px / 150px;
   -moz-animation-name: ripple;
   -webkit-animation-name: ripple;
   animation-name: ripple;
-  -moz-animation-delay: 2s;
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
-  -moz-animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -moz-animation-delay: var(--anim-duration);
+  -webkit-animation-delay: var(--anim-duration);
+  animation-delay: var(--anim-duration);
+  -moz-animation-duration: var(--anim-duration);
+  -webkit-animation-duration: var(--anim-duration);
+  animation-duration: var(--anim-duration);
   -moz-animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
@@ -84,16 +84,16 @@ div {
   left: -5px;
   width: 2px;
   height: 1px;
-  border: #2c2c2c 5px solid;
+  border: var(--ocean-color) 5px solid;
   -moz-border-radius: 300px / 150px;
   -webkit-border-radius: 300px / 150px;
   border-radius: 300px / 150px;
   -moz-animation-name: ripple-2;
   -webkit-animation-name: ripple-2;
   animation-name: ripple-2;
-  -moz-animation-duration: 2s;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+  -moz-animation-duration: var(--anim-duration);
+  -webkit-animation-duration: var(--anim-duration);
+  animation-duration: var(--anim-duration);
   -moz-animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;

@@ -1,0 +1,23 @@
+{
+  "name": "drip",
+  "author": "Mitul Patel",
+  "version": "1.0.0",
+  "description": "Build Shopify-like Liquid templates into a static dist/index.html and serve locally.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "clean": "rm -rf dist",
+    "watch": "chokidar 'templates/**/*.liquid' 'sections/**/*.liquid' style.css scripts/build.js -c \"npm run build\"",
+    "serve": "live-server dist --port=3000 --no-browser",
+    "dev": "npm-run-all --parallel watch serve"
+  },
+  "dependencies": {
+    "liquidjs": "^10.9.2"
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "live-server": "^1.2.2",
+    "npm-run-all": "^4.1.5"
+  }
+}

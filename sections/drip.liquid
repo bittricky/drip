@@ -1,0 +1,52 @@
+{% comment %}
+Drip Section
+{% endcomment %}
+
+{{ 'style.css' | asset_url | stylesheet_tag }}
+
+<style>
+  :root {
+    --bg: {{ section.settings.bg_color | default: '#ffffff' }};
+    --droplet-light: {{ section.settings.droplet_light | default: '#ffffff' }};
+    --droplet-mid: {{ section.settings.droplet_mid | default: '#6b6b6b' }};
+    --droplet-dark: {{ section.settings.droplet_dark | default: '#2c2c2c' }};
+    --ocean-color: {{ section.settings.ocean_color | default: '#2c2c2c' }};
+    --anim-duration: {{ section.settings.anim_duration | default: 2 }}s;
+  }
+</style>
+
+<div class="drip-section">
+  {% if section.settings.show_droplet %}
+    <div class="small">
+      <div class="droplet"></div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.show_ripple %}
+    <div class="large">
+      <div class="ocean"></div>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Drip",
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#ffffff" },
+    { "type": "color", "id": "droplet_light", "label": "Droplet highlight (light)", "default": "#ffffff" },
+    { "type": "color", "id": "droplet_mid", "label": "Droplet mid tone", "default": "#6b6b6b" },
+    { "type": "color", "id": "droplet_dark", "label": "Droplet shadow (dark)", "default": "#2c2c2c" },
+    { "type": "color", "id": "ocean_color", "label": "Ripple (ocean) color", "default": "#2c2c2c" },
+    { "type": "header", "content": "Animation" },
+    { "type": "range", "id": "anim_duration", "label": "Animation duration (seconds)", "min": 1, "max": 10, "step": 0.5, "unit": "s", "default": 2 },
+    { "type": "header", "content": "Visibility" },
+    { "type": "checkbox", "id": "show_droplet", "label": "Show droplet", "default": true },
+    { "type": "checkbox", "id": "show_ripple", "label": "Show ripple", "default": true }
+  ],
+  "presets": [
+    { "name": "Drip", "category": "Custom" }
+  ]
+}
+{% endschema %}
