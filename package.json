@@ -2,7 +2,7 @@
   "name": "drip",
   "author": "Mitul Patel",
   "version": "1.0.0",
-  "description": "Build Shopify-like Liquid templates into a static dist/index.html and serve locally.",
+  "description": "Drip animation",
   "license": "MIT",
   "type": "module",
   "scripts": {

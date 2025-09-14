@@ -181,15 +181,3 @@ Edit the local section settings file at `scripts/data/sections/drip.json`:
 ```
 
 These map to CSS variables in the rendered HTML and are consumed by `style.css`.
-
-Note: A previous standalone `index.html` file is no longer necessary with this build setup and may be removed during cleanup.
-
-### Optional Shopify Files
-
-This repo also includes optional Shopify files for convenience if you decide to integrate later:
-
-- `sections/drip.liquid` — a section version of the animation with configurable settings
-- `templates/page.drip.liquid` — a page template that renders the section
-- `config/settings_schema.json` — global theme settings (not needed for local use)
-
-You can ignore these files when running locally.
