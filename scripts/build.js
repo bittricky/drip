@@ -7,7 +7,6 @@ import path from "path";
 const rootDir = path.resolve(process.cwd());
 const templatesDir = path.join(rootDir, "templates");
 const sectionsDir = path.join(rootDir, "sections");
-const assets = [path.join(rootDir, "style.css")];
 const distDir = path.join(rootDir, "dist");
 
 // Ensure dist directory exists
@@ -102,14 +101,6 @@ engine.registerTag("section", {
     return html;
   },
 });
-
-// Copy assets to dist
-await Promise.all(
-  assets.map(async (src) => {
-    const dest = path.join(distDir, path.basename(src));
-    await fsp.copyFile(src, dest);
-  })
-);
 
 // Render the main page template to dist/index.html
 const outFile = path.join(distDir, "index.html");

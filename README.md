@@ -111,6 +111,8 @@ Each technique serves a specific purpose in creating the illusion and creating t
 
 This project uses [LiquidJS](https://liquidjs.com/) to render templates locally into a static `dist/index.html` and a lightweight dev toolchain for local iteration.
 
+CSS is processed via [PostCSS](https://postcss.org/) with `autoprefixer` and `postcss-preset-env` and output to `dist/style.css`.
+
 - Main page template: `templates/page.drip.liquid` wraps a complete HTML document and includes the section.
 - Section: `sections/drip.liquid` renders the droplet/ripple and defines CSS variables in a `:root` block from section settings.
   - In the local build, `asset_url` and `stylesheet_tag` are emulated by the build script.
@@ -130,20 +132,26 @@ This project uses [LiquidJS](https://liquidjs.com/) to render templates locally 
 
 ### Build and preview locally
 
-- Build once: `npm run build` (outputs `dist/index.html`)
+- Build once: `npm run build` (outputs `dist/index.html` and `dist/style.css`)
 - Dev server with auto-rebuild and live reload: `npm run dev` then open http://localhost:3000
 
 ## Local Usage
 
-Build and serve the Liquid templates locally using the provided Node pipeline (BrowserSync + nodemon + concurrently):
+Build and serve the Liquid templates locally using the provided Node pipeline (BrowserSync + nodemon + concurrently + PostCSS):
 
 1. Install dependencies:
    - `npm install`
 2. Build once:
-   - `npm run build` (outputs `dist/index.html`)
+   - `npm run build` (outputs `dist/index.html` and `dist/style.css`)
 3. Dev server (auto rebuild + live reload + serve):
    - `npm run dev` and open http://localhost:3000
-   - The dev setup uses `nodemon` to watch `templates/`, `sections/`, `style.css`, and `scripts/build.js`, rebuilding `dist/index.html` on changes, and `browser-sync` to serve `dist/` with live reload.
+   - The dev setup uses `nodemon` to watch `templates/`, `sections/`, `style.css`, and `scripts/build.js`, running `npm run build` on changes. `build` renders `dist/index.html` via Liquid and runs PostCSS to produce `dist/style.css`. `browser-sync` serves `dist/` with live reload.
+
+### PostCSS
+
+- Config: `postcss.config.cjs` with `postcss-preset-env` (stage 1, includes nesting) and `autoprefixer`
+- CLI: `postcss style.css -o dist/style.css` (run via `npm run css`, invoked by `npm run build`)
+- Targets: controlled by `browserslist` in `package.json`
 
 ### Customize appearance
 

@@ -6,11 +6,12 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.js",
+    "build": "node scripts/build.js && npm run css",
     "clean": "rm -rf dist",
     "watch": "nodemon --watch templates --watch sections --watch style.css --watch scripts/build.js --ext liquid,css,js --exec \"npm run build\"",
     "serve": "browser-sync start --server dist --port 3000 --no-open --files 'dist/**/*'",
-    "dev": "npm run build && concurrently -n watch,serve -c cyan,magenta \"npm:watch\" \"npm:serve\""
+    "dev": "npm run build && concurrently -n watch,serve -c cyan,magenta \"npm:watch\" \"npm:serve\"",
+    "css": "postcss style.css -o dist/style.css"
   },
   "dependencies": {
     "liquidjs": "^10.9.2"
@@ -18,6 +19,16 @@
   "devDependencies": {
     "browser-sync": "^2.29.3",
     "concurrently": "^8.2.2",
-    "nodemon": "^3.1.0"
-  }
+    "nodemon": "^3.1.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-preset-env": "^10.0.5"
+  },
+  "browserslist": [
+    ">0.5%",
+    "last 2 versions",
+    "not dead",
+    "not op_mini all"
+  ]
 }
