@@ -16,13 +16,14 @@
     "css": "postcss style.css -o dist/style.css"
   },
   "dependencies": {
+    "animejs": "^4.1.4",
     "liquidjs": "^10.9.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "browser-sync": "^2.29.3",
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.0",
-    "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "postcss-preset-env": "^10.0.5"
