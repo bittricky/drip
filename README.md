@@ -129,13 +129,12 @@ CSS is processed via [PostCSS](https://postcss.org/) with `autoprefixer` and `po
 - `anim_duration` — Animation duration in seconds
 - `show_droplet` — Toggle droplet visibility
 - `show_ripple` — Toggle ripple visibility
-
 ### Build and preview locally
 
 - Build once: `npm run build` (outputs `dist/index.html` and `dist/style.css`)
 - Dev server with auto-rebuild and live reload: `npm run dev` then open http://localhost:3000
 
-## Local Usage
+  ## Local Usage
 
 Build and serve the Liquid templates locally using the provided Node pipeline (BrowserSync + nodemon + concurrently + PostCSS):
 
@@ -145,7 +144,19 @@ Build and serve the Liquid templates locally using the provided Node pipeline (B
    - `npm run build` (outputs `dist/index.html` and `dist/style.css`)
 3. Dev server (auto rebuild + live reload + serve):
    - `npm run dev` and open http://localhost:3000
-   - The dev setup uses `nodemon` to watch `templates/`, `sections/`, `style.css`, and `scripts/build.js`, running `npm run build` on changes. `build` renders `dist/index.html` via Liquid and runs PostCSS to produce `dist/style.css`. `browser-sync` serves `dist/` with live reload.
+   - The dev setup runs two watchers in parallel:
+     - `nodemon` watches `templates/`, `sections/`, and `scripts/build.js` and runs `npm run build:html` on changes (renders `dist/index.html`).
+     - `postcss-cli` watches `style.css` and writes `dist/style.css` on changes.
+   - `browser-sync` serves `dist/` with live reload.
+
+### Scripts overview
+
+- `npm run build` — Builds HTML (Liquid) and CSS (PostCSS) into `dist/`
+- `npm run build:html` — Builds only HTML into `dist/index.html`
+- `npm run css` — Processes CSS once via PostCSS into `dist/style.css`
+- `npm run watch` — Watches templates/sections/build.js and rebuilds HTML only
+- `npm run watch:css` — Watches `style.css` and rebuilds CSS only
+- `npm run dev` — Runs an initial build, then `watch`, `watch:css`, and `serve` in parallel
 
 ### PostCSS
 

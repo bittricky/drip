@@ -6,11 +6,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.js && npm run css",
+    "build:html": "node scripts/build.js",
+    "build": "npm run build:html && npm run css",
     "clean": "rm -rf dist",
-    "watch": "nodemon --watch templates --watch sections --watch style.css --watch scripts/build.js --ext liquid,css,js --exec \"npm run build\"",
+    "watch": "nodemon --watch templates --watch sections --watch scripts/build.js --ext liquid,js --exec \"npm run build:html\"",
+    "watch:css": "postcss style.css -o dist/style.css --watch",
     "serve": "browser-sync start --server dist --port 3000 --no-open --files 'dist/**/*'",
-    "dev": "npm run build && concurrently -n watch,serve -c cyan,magenta \"npm:watch\" \"npm:serve\"",
+    "dev": "npm run build && concurrently -n watch,watch:css,serve -c cyan,green,magenta \"npm:watch\" \"npm:watch:css\" \"npm:serve\"",
     "css": "postcss style.css -o dist/style.css"
   },
   "dependencies": {
