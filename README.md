@@ -102,19 +102,17 @@ clip-path: polygon(50% 0%, 0% 90%, 100% 80%);
 The water droplet effect combines all these techniques:
 
 - **Keyframes** animate the falling motion
-- **Radial gradients** create realistic 3D lighting
 - **Cubic bezier** makes the fall feel natural with gravity
 - **Clip path** shapes the teardrop tail
 
 Each technique serves a specific purpose in creating the illusion and creating the ripple effect of water.
 
-## Liquid Integration
+  ## Liquid Integration
 
-This project uses [LiquidJS](https://liquidjs.com/) to render templates locally into a static `dist/index.html`.
+This project uses [LiquidJS](https://liquidjs.com/) to render templates locally into a static `dist/index.html` and a lightweight dev toolchain for local iteration.
 
 - Main page template: `templates/page.drip.liquid` wraps a complete HTML document and includes the section.
 - Section: `sections/drip.liquid` renders the droplet/ripple and defines CSS variables in a `:root` block from section settings.
-- Stylesheet is linked using Liquid helpers: `{{ 'style.css' | asset_url | stylesheet_tag }}`.
   - In the local build, `asset_url` and `stylesheet_tag` are emulated by the build script.
 - Section settings are loaded at build time from `scripts/data/sections/drip.json`.
 - Shopify-only `{% schema %}...{% endschema %}` blocks in the section are ignored during local rendering.
@@ -133,18 +131,19 @@ This project uses [LiquidJS](https://liquidjs.com/) to render templates locally 
 ### Build and preview locally
 
 - Build once: `npm run build` (outputs `dist/index.html`)
-- Dev server with auto-rebuild: `npm run dev` then open http://localhost:3000
+- Dev server with auto-rebuild and live reload: `npm run dev` then open http://localhost:3000
 
 ## Local Usage
 
-Build and serve the Liquid templates locally using the provided Node pipeline:
+Build and serve the Liquid templates locally using the provided Node pipeline (BrowserSync + nodemon + concurrently):
 
 1. Install dependencies:
    - `npm install`
 2. Build once:
    - `npm run build` (outputs `dist/index.html`)
-3. Dev server (auto rebuild + serve):
+3. Dev server (auto rebuild + live reload + serve):
    - `npm run dev` and open http://localhost:3000
+   - The dev setup uses `nodemon` to watch `templates/`, `sections/`, `style.css`, and `scripts/build.js`, rebuilding `dist/index.html` on changes, and `browser-sync` to serve `dist/` with live reload.
 
 ### Customize appearance
 
